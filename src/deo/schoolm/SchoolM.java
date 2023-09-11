@@ -4,7 +4,7 @@
  */
 package deo.schoolm;
 
-import deo.schoolm.entities.Eleve;
+import deo.schoolm.primaire.entities.Eleve;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
@@ -37,12 +37,12 @@ public class SchoolM {
             System.out.println(e.getMessage());
         }
         
-        Eleve e = new Eleve("Kodjogan", "Komi Jean", "Kodjogan Yao Eric", "99866863");
+        //Eleve e = new Eleve("Kodjogan", "Komi Jean", "Kodjogan Yao Eric", "99866863");
         
         EntityTransaction et = em.getTransaction();
         
         et.begin();
-            em.persist(e);
+            //em.persist(e);
         et.commit();
         
     }
