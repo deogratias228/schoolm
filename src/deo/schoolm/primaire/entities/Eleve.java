@@ -6,6 +6,7 @@ package deo.schoolm.primaire.entities;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -49,6 +50,10 @@ public class Eleve implements Serializable {
     @ManyToOne
     @JoinColumn(name = "classe_id")
     private Classe classe;
+    
+    @OneToMany(mappedBy = "eleve")
+    private List<Note> notes;
+    
 
     public Eleve() {
     }

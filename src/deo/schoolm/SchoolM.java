@@ -5,6 +5,7 @@
 package deo.schoolm;
 
 import deo.schoolm.primaire.entities.Eleve;
+import deo.schoolm.utils.Connexion;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
@@ -21,29 +22,6 @@ public class SchoolM {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        
-        EntityManager em = null;
-        try {
-            EntityManagerFactory emf = Persistence.createEntityManagerFactory("thePU");
-            System.out.println("Emf ok..");
-            
-            try {
-                em = emf.createEntityManager();
-                System.out.println("Tout est ok now");
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-            }
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-        
-        //Eleve e = new Eleve("Kodjogan", "Komi Jean", "Kodjogan Yao Eric", "99866863");
-        
-        EntityTransaction et = em.getTransaction();
-        
-        et.begin();
-            //em.persist(e);
-        et.commit();
         
     }
     

@@ -7,7 +7,13 @@
     <persistence-unit name="thePU">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         
-        <class>deo.schoolm.Eleve</class> 
+        <class>deo.schoolm.primaire.entities.Cours</class>
+        <class>deo.schoolm.primaire.entities.Classe</class> 
+        <class>deo.schoolm.primaire.entities.Eleve</class> 
+        <class>deo.schoolm.primaire.entities.Evaluation</class> 
+        <class>deo.schoolm.primaire.entities.Instituteur</class> 
+        <class>deo.schoolm.primaire.entities.Matiere</class>
+        <class>deo.schoolm.primaire.entities.Note</class> 
         
         <properties>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />

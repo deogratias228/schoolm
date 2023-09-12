@@ -5,6 +5,8 @@
 package deo.schoolm.primaire.entities;
 
 import java.io.Serializable;
+import java.util.List;
+import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,6 +14,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -32,9 +35,19 @@ public class Classe implements Serializable {
     @ManyToOne
     @JoinColumn(name = "cours_id")
     private Cours cours;
-
+    
+    @ManyToOne
+    @JoinColumn(name = "instituteur_id")
+    private Instituteur instituteur;
+    
+    @OneToMany(mappedBy = "classe")
+    private List<Evaluation> evaluations;
+    
+    @OneToMany(mappedBy = "classe")
+    private List<Eleve> eleves;
     
     public Classe() {
+        this.distingush = " ";
     }
 
     public Classe(Integer id, String distingush, Cours cours) {
@@ -66,5 +79,63 @@ public class Classe implements Serializable {
     public void setCours(Cours cours) {
         this.cours = cours;
     }
+
+    public List<Evaluation> getEvaluations() {
+        return evaluations;
+    }
+
+    public void setEvaluations(List<Evaluation> evaluations) {
+        this.evaluations = evaluations;
+    }
+
+    public List<Eleve> getEleves() {
+        return eleves;
+    }
+
+    public void setEleves(List<Eleve> eleves) {
+        this.eleves = eleves;
+    }
+
+    public Instituteur getInstituteur() {
+        return instituteur;
+    }
+
+    public void setInstituteur(Instituteur instituteur) {
+        this.instituteur = instituteur;
+    }
+    
+    
+
+    @Override
+    public String toString() {
+        return "Classe{" + "id=" + id + ", distingush=" + distingush + ", cours=" + cours + ", instituteur=" + instituteur + ", evaluations=" + evaluations + ", eleves=" + eleves + '}';
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 89 * hash + Objects.hashCode(this.id);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Classe other = (Classe) obj;
+        if (!Objects.equals(this.distingush, other.distingush)) {
+            return false;
+        }
+        return Objects.equals(this.id, other.id);
+    }
+    
+    
     
 }

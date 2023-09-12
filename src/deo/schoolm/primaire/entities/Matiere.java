@@ -5,12 +5,14 @@
 package deo.schoolm.primaire.entities;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -30,6 +32,9 @@ public class Matiere implements Serializable {
     
     @Column(name = "note_maxi")
     private double noteMaxi;
+    
+    @OneToMany(mappedBy = "matiere")
+    private List<Note> notes;
 
     public Matiere() {
     }
