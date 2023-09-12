@@ -30,7 +30,7 @@ public class Eleve implements Serializable {
     private Integer id;
     
     @Column(name="eleve_matricule", length=15)
-    private double eleveMatricule;
+    private long eleveMatricule;
     
     @Column(name = "eleve_nom", length = 30)
     private String eleveNom;
@@ -58,7 +58,7 @@ public class Eleve implements Serializable {
     public Eleve() {
     }
 
-    public Eleve(double matricule, String nom, String prenom, LocalDate naissance, String nomTuteur, String contactTuteur) {
+    public Eleve(long matricule, String nom, String prenom, LocalDate naissance, String nomTuteur, String contactTuteur) {
         this.eleveMatricule = matricule;
         this.eleveNom = nom;
         this.elevePrenom = prenom;
@@ -75,11 +75,11 @@ public class Eleve implements Serializable {
         this.id = id;
     }
 
-    public double getEleveMatricule() {
+    public long getEleveMatricule() {
         return eleveMatricule;
     }
 
-    public void setEleveMatricule(double eleveMatricule) {
+    public void setEleveMatricule(long eleveMatricule) {
         this.eleveMatricule = eleveMatricule;
     }
 

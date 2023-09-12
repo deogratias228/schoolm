@@ -84,6 +84,16 @@ public class Evaluation implements Serializable{
         this.classe = classe;
     }
 
+    public List<Note> getNotes() {
+        return notes;
+    }
+
+    public void setNotes(List<Note> notes) {
+        this.notes = notes;
+    }
+    
+    
+
     @Override
     public String toString() {
         return "Evaluation{" + "id=" + id + ", intitule=" + intitule + ", observations=" + observations + ", classe=" + classe + '}';

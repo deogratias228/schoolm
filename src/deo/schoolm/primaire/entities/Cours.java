@@ -36,6 +36,8 @@ public class Cours implements Serializable {
     @OneToMany(mappedBy = "cours")
     private List<Classe> classes;
     
+    
+    
     public Cours() {
     }
 
@@ -69,6 +71,16 @@ public class Cours implements Serializable {
         this.description = description;
     }
 
+    public List<Classe> getClasses() {
+        return classes;
+    }
+
+    public void setClasses(List<Classe> classes) {
+        this.classes = classes;
+    }
+
+    
+    
     @Override
     public String toString() {
         return "Cours{" + "id=" + id + ", code=" + code + ", description=" + description + '}';
