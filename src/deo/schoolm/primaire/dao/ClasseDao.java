@@ -16,8 +16,6 @@ import java.util.List;
 public interface ClasseDao {
     public void ajouter(Classe classe);
     public void supprimer(Classe classe);
-    public void supprimer(Cours cours);
-    public void supprimer(String distingush);
     public void supprimer(Integer id);
     public Classe modifier(Classe classe);
     public Classe trouver(Integer id);

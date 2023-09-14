@@ -20,6 +20,6 @@ public interface EvaluationDao {
     public Evaluation modifier(Evaluation e);
     public Evaluation trouver(Integer id);
     public List<Evaluation> lister();
-    public List<Evaluation> lister(Classe c);
+    public List<Evaluation> lister(Classe classe);
     public List<Evaluation> lister(String intitule);
 }

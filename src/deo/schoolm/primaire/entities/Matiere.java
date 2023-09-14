@@ -12,6 +12,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -27,23 +29,33 @@ public class Matiere implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     
-    @Column(name = "intitule")
+    @Column(name = "intitule", length = 255)
     private String intitule;
     
     @Column(name = "note_maxi")
     private double noteMaxi;
     
+    @ManyToOne
+    @JoinColumn(name = "cours_id")
+    private Cours cours;
+    
     @OneToMany(mappedBy = "matiere")
     private List<Note> notes;
+    
+    @OneToMany(mappedBy = "matiere")
+    private List<Eleve> eleves;
 
     public Matiere() {
     }
 
-    public Matiere(Integer id, String intitule, double noteMaxi) {
+    public Matiere(Integer id, String intitule, double noteMaxi, Cours cours) {
         this.id = id;
         this.intitule = intitule;
         this.noteMaxi = noteMaxi;
+        this.cours = cours;
     }
+
+    
 
     public Integer getId() {
         return id;
@@ -68,6 +80,32 @@ public class Matiere implements Serializable {
     public void setNoteMaxi(double noteMaxi) {
         this.noteMaxi = noteMaxi;
     }
+
+    public Cours getCours() {
+        return cours;
+    }
+
+    public void setCours(Cours cours) {
+        this.cours = cours;
+    }
+
+    public List<Note> getNotes() {
+        return notes;
+    }
+
+    public void setNotes(List<Note> notes) {
+        this.notes = notes;
+    }
+
+    public List<Eleve> getEleves() {
+        return eleves;
+    }
+
+    public void setEleves(List<Eleve> eleves) {
+        this.eleves = eleves;
+    }
+    
+    
 
     @Override
     public String toString() {

@@ -16,7 +16,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
- *
+ * fait reférence à CP1, CP2, CE1,...
  * @author Deo Gratias 228
  */
 

@@ -4,13 +4,8 @@
  */
 package deo.schoolm;
 
-import deo.schoolm.primaire.entities.Eleve;
 import deo.schoolm.utils.Connexion;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
-
 /**
  *
  * @author Deo Gratias 228
@@ -22,6 +17,7 @@ public class SchoolM {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        EntityManager em = Connexion.getConnexion();
         
     }
     

@@ -17,7 +17,8 @@ public interface InstituteurDao {
     public void supprimer(Integer id );
     public void supprimer(long matricule);
     public Instituteur modifier(Instituteur instituteur);
-    public Instituteur trouver(long matricule);
+    public Instituteur trouver(Integer id);
+//    public Instituteur trouver(long matricule);
     public List<Instituteur> lister();
     public List<Instituteur> lister(String gradeOuTitre);
 }

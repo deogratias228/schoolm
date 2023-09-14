@@ -13,8 +13,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -48,12 +46,12 @@ public class Note implements Serializable {
     public Note() {
     }
 
-    public Note(Integer id, double note_obtenue, Eleve eleve, Evaluation evaluation, Matiere matiere) {
+    public Note(Integer id, double noteObtenue, Eleve eleve, Evaluation evaluation, Matiere matiere) {
         this.id = id;
         this.eleve = eleve;
         this.evaluation = evaluation;
         this.matiere = matiere;
-        this.noteObtenue = note_obtenue;
+        this.noteObtenue = noteObtenue;
     }
 
     public Integer getId() {

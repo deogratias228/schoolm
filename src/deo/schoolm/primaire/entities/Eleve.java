@@ -7,6 +7,7 @@ package deo.schoolm.primaire.entities;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -53,6 +54,9 @@ public class Eleve implements Serializable {
     
     @OneToMany(mappedBy = "eleve")
     private List<Note> notes;
+    
+    @OneToMany(mappedBy = "eleve")
+    private List<Matiere> matieres;
     
 
     public Eleve() {
@@ -122,10 +126,61 @@ public class Eleve implements Serializable {
     public void setEleveNaissance(LocalDate naissance) {
         this.eleveNaissance = naissance;
     }
+
+    public Classe getClasse() {
+        return classe;
+    }
+
+    public void setClasse(Classe classe) {
+        this.classe = classe;
+    }
+
+    public List<Note> getNotes() {
+        return notes;
+    }
+
+    public void setNotes(List<Note> notes) {
+        this.notes = notes;
+    }
+
+    public List<Matiere> getMatieres() {
+        return matieres;
+    }
+
+    public void setMatieres(List<Matiere> matieres) {
+        this.matieres = matieres;
+    }
+    
+    
     
     @Override
     public String toString() {
         return "Eleve{" + "Matricule=" + id + ", nom=" + eleveNom + ", prenom=" + elevePrenom + ", nomTuteur=" + tuteurNom + ", contactTuteur=" + tuteurContact + '}';
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 67 * hash + Objects.hashCode(this.id);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Eleve other = (Eleve) obj;
+        if (this.eleveMatricule != other.eleveMatricule) {
+            return false;
+        }
+        return Objects.equals(this.id, other.id);
     }
             
     

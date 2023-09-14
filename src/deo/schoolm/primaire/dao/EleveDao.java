@@ -16,7 +16,8 @@ public interface EleveDao {
     public void supprimer(long matricule);
     public void supprimer(Eleve eleve);
     public Eleve modifier(Eleve eleve);
-    public Eleve trouver(long matricule);
+    public Eleve trouver(Integer id);
+//    public Eleve trouver(long matricule);
     public List<Eleve> lister();
     public List<Eleve> lister(String eleveTuteurContact);
     public List<Eleve> lister(long anneeNaissance);
