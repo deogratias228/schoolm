@@ -22,7 +22,7 @@ import javax.persistence.Table;
  * @author Deo Gratias 228
  */
 @Entity
-@Table(name = "classe")
+@Table(name = "p_classe")
 public class Classe implements Serializable {
 
     @Id

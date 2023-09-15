@@ -22,7 +22,7 @@ import javax.persistence.Table;
  * @author Deo Gratias 228
  */
 @Entity
-@Table(name = "evaluation")
+@Table(name = "p_evaluation")
 public class Evaluation implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

@@ -23,7 +23,7 @@ import javax.persistence.Table;
  */
 
 @Entity
-@Table(name = "matiere")
+@Table(name = "p_matiere")
 public class Matiere implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
