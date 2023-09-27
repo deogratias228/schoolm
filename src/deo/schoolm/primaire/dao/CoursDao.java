@@ -15,7 +15,6 @@ public interface CoursDao {
     public void ajouter(Cours cours);
     public void supprimer(Cours cours);
     public void supprimer(Integer id);
-    public void supprimer(String code);
     public Cours modifier(Cours cours);
     public Cours trouver(Integer id);
     public List<Cours> lister();

@@ -4,7 +4,6 @@
  */
 package deo.schoolm.primaire.services;
 
-import deo.schoolm.primaire.dao.*;
 import deo.schoolm.primaire.entities.Eleve;
 import java.util.List;
 
@@ -14,7 +13,7 @@ import java.util.List;
  */
 public interface EleveService {
     public void ajouter(Eleve eleve);
-    public void supprimer(long matricule);
+    public void supprimer(Integer id);
     public void supprimer(Eleve eleve);
     public Eleve modifier(Eleve eleve);
     public Eleve trouver(Integer id);

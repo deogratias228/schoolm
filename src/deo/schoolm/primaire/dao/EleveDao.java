@@ -13,7 +13,7 @@ import java.util.List;
  */
 public interface EleveDao {
     public void ajouter(Eleve eleve);
-    public void supprimer(long matricule);
+    public void supprimer(Integer id);
     public void supprimer(Eleve eleve);
     public Eleve modifier(Eleve eleve);
     public Eleve trouver(Integer id);

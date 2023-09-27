@@ -3,13 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/F:/NetbeansProjects/SchoolM/src/deo/schoolm/primaire/entities/Eleve.java</file>
-            <file>file:/F:/NetbeansProjects/SchoolM/src/deo/schoolm/primaire/entities/Matiere.java</file>
-            <file>file:/F:/NetbeansProjects/SchoolM/src/deo/schoolm/primaire/entities/Classe.java</file>
+            <file>file:/F:/NetbeansProjects/SchoolM/src/deo/schoolm/primaire/dao/ClasseDaoImpl.java</file>
+            <file>file:/F:/NetbeansProjects/SchoolM/src/deo/schoolm/primaire/dao/EvaluationDaoImpl.java</file>
+            <file>jar:file:/F:/NetbeansProjects/SchoolM/dependencies/javaee-api-8.0-sources.jar!/javax/persistence/EntityManager.java</file>
             <file>file:/F:/NetbeansProjects/SchoolM/src/deo/schoolm/primaire/entities/Evaluation.java</file>
-            <file>file:/F:/NetbeansProjects/SchoolM/src/deo/schoolm/primaire/entities/Instituteur.java</file>
-            <file>file:/F:/NetbeansProjects/SchoolM/src/deo/schoolm/primaire/entities/Cours.java</file>
-            <file>file:/F:/NetbeansProjects/SchoolM/src/deo/schoolm/primaire/entities/Note.java</file>
+            <file>file:/F:/NetbeansProjects/SchoolM/src/deo/schoolm/primaire/dao/CoursDao.java</file>
         </group>
     </open-files>
 </project-private>

@@ -16,7 +16,6 @@ public interface EvaluationDao {
     public void ajouter(Evaluation e);
     public void supprimer(Evaluation e);
     public void supprimer(Integer id);
-    public void supprimer(String intitule);
     public Evaluation modifier(Evaluation e);
     public Evaluation trouver(Integer id);
     public List<Evaluation> lister();
