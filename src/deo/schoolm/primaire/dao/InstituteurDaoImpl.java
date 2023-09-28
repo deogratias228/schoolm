@@ -4,7 +4,7 @@
  */
 package deo.schoolm.primaire.dao;
 
-import deo.schoolm.primaire.entities.Evaluation;
+import deo.schoolm.primaire.entities.Instituteur;
 import deo.schoolm.utils.Connexion;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -14,15 +14,15 @@ import javax.persistence.Query;
  *
  * @author Deo Gratias 228
  */
-public class EvaluationDaoImpl implements EvaluationDao {
+public class InstituteurDaoImpl implements InstituteurDao {
 
     @Override
-    public void ajouter(Evaluation e) {
+    public void ajouter(Instituteur instituteur) {
         EntityManager em = Connexion.getConnexion();
         
         try {
             em.getTransaction().begin();
-                em.persist(e);
+                em.persist(instituteur);
             em.getTransaction().commit();
         } finally {
             em.close();
@@ -30,12 +30,12 @@ public class EvaluationDaoImpl implements EvaluationDao {
     }
 
     @Override
-    public void supprimer(Evaluation e) {
+    public void supprimer(Instituteur instituteur) {
         EntityManager em = Connexion.getConnexion();
         
         try {
             em.getTransaction().begin();
-                em.remove(e);
+                em.remove(instituteur);
             em.getTransaction().commit();
         } finally {
             em.close();
@@ -48,45 +48,25 @@ public class EvaluationDaoImpl implements EvaluationDao {
     }
 
     @Override
-    public Evaluation modifier(Evaluation e) {
+    public Instituteur modifier(Instituteur instituteur) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public Evaluation trouver(Integer id) {
+    public Instituteur trouver(Integer id) {
         EntityManager em = Connexion.getConnexion();
         
-        return em.find(Evaluation.class, id);
+        return em.find(Instituteur.class, id);
     }
 
     @Override
-    public List<Evaluation> lister() {
+    public List<Instituteur> lister() {
+        List<Instituteur> liste = null;
         EntityManager em = Connexion.getConnexion();
-        List<Evaluation> evaluations = null;
         
         try {
-            Query query = em.createQuery("SELECT evaluation FROM Evaluation evaluation");
-            evaluations = query.getResultList();
-        } finally {
-            em.close();
-        }
-        
-        return evaluations;
-    }
-
-    @Override
-    public List<Evaluation> lister(String intituleOuClasse) {
-        EntityManager em = Connexion.getConnexion();
-        List<Evaluation> liste = null;
-        
-        try {
-            Query query = em.createQuery(""
-                    + " SELECT evaluation FROM Evaluation evaluation WHERE"
-                    + " (evaluation.intitule OR evaluation.classe.cours.code)"
-                    + " LIKE :data ");
-            query.setParameter(":data", intituleOuClasse);
+            Query query = em.createQuery("SELECT instituteur FROM Instituteur instituteur");
             liste = query.getResultList();
-            
         } finally {
             em.close();
         }
@@ -94,5 +74,28 @@ public class EvaluationDaoImpl implements EvaluationDao {
         return liste;
     }
 
+    @Override
+    public List<Instituteur> lister(String search) {
+        List<Instituteur> liste = null;
+        EntityManager em = Connexion.getConnexion();
+        
+        try {
+            Query query = em.createQuery(""
+                    + " SELECT instituteur FROM Instituteur instituteur"
+                    + " WHERE (instituteur.gradeEchelon "
+                    + " OR instituteur.nom"
+                    + " OR instituteur.numeroMatricule "
+                    + " OR instituteur.prenom "
+                    + " OR instituteur.contact "
+                    + " OR instituteur.titre)"
+                    + " LIKE :search");
+            query.setParameter(":search", search);
+            liste = query.getResultList();
+        } finally {
+            em.close();
+        }
+        
+        return liste;
+    }
     
 }

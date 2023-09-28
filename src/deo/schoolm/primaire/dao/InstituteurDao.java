@@ -15,7 +15,6 @@ public interface InstituteurDao {
     public void ajouter(Instituteur instituteur);
     public void supprimer(Instituteur instituteur);
     public void supprimer(Integer id );
-    public void supprimer(long matricule);
     public Instituteur modifier(Instituteur instituteur);
     public Instituteur trouver(Integer id);
 //    public Instituteur trouver(long matricule);
