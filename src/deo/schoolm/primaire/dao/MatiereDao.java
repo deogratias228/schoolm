@@ -21,7 +21,5 @@ public interface MatiereDao {
     public Matiere trouver(Integer id);
     public List<Matiere> lister();
     public List<Matiere> lister(double note);
-    public List<Matiere> lister(Cours cours);
-    public List<Matiere> lister(Eleve eleve);
-    
+    public List<Matiere> lister(String search);
 }
