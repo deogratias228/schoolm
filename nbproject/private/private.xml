@@ -2,6 +2,16 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/F:/NetbeansProjects/SchoolM/src/deo/schoolm/primaire/dao/ClasseDaoImpl.java</file>
+            <file>file:/F:/NetbeansProjects/SchoolM/src/deo/schoolm/primaire/dao/NoteDaoImpl.java</file>
+            <file>file:/F:/NetbeansProjects/SchoolM/src/deo/schoolm/primaire/dao/ClasseDao.java</file>
+            <file>file:/F:/NetbeansProjects/SchoolM/src/deo/schoolm/primaire/dao/EleveDaoImpl.java</file>
+            <file>file:/F:/NetbeansProjects/SchoolM/src/deo/schoolm/primaire/dao/InstituteurDaoImpl.java</file>
+            <file>file:/F:/NetbeansProjects/SchoolM/src/deo/schoolm/primaire/dao/EvaluationDaoImpl.java</file>
+            <file>file:/F:/NetbeansProjects/SchoolM/src/deo/schoolm/primaire/dao/MatiereDaoImpl.java</file>
+            <file>file:/F:/NetbeansProjects/SchoolM/src/deo/schoolm/primaire/dao/CoursDao.java</file>
+            <file>file:/F:/NetbeansProjects/SchoolM/src/deo/schoolm/primaire/dao/CoursDaoImpl.java</file>
+        </group>
     </open-files>
 </project-private>

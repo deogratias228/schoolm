@@ -4,7 +4,6 @@
  */
 package deo.schoolm.primaire.services;
 
-import deo.schoolm.primaire.dao.*;
 import deo.schoolm.primaire.entities.Cours;
 import java.util.List;
 
@@ -16,8 +15,8 @@ public interface CoursService {
     public void ajouter(Cours cours);
     public void supprimer(Cours cours);
     public void supprimer(Integer id);
-    public void supprimer(String code);
     public Cours modifier(Cours cours);
     public Cours trouver(Integer id);
     public List<Cours> lister();
+    public List<Cours> lister(String filter);
 }

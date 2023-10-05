@@ -4,8 +4,6 @@
  */
 package deo.schoolm.primaire.services;
 
-import deo.schoolm.primaire.dao.*;
-import deo.schoolm.primaire.entities.Classe;
 import deo.schoolm.primaire.entities.Evaluation;
 import java.util.List;
 
@@ -17,10 +15,8 @@ public interface EvaluationService {
     public void ajouter(Evaluation e);
     public void supprimer(Evaluation e);
     public void supprimer(Integer id);
-    public void supprimer(String intitule);
     public Evaluation modifier(Evaluation e);
     public Evaluation trouver(Integer id);
     public List<Evaluation> lister();
-    public List<Evaluation> lister(Classe classe);
-    public List<Evaluation> lister(String intitule);
+    public List<Evaluation> lister(String intituleOuClasse);
 }

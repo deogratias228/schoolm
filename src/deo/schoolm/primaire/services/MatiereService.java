@@ -4,9 +4,6 @@
  */
 package deo.schoolm.primaire.services;
 
-import deo.schoolm.primaire.dao.*;
-import deo.schoolm.primaire.entities.Cours;
-import deo.schoolm.primaire.entities.Eleve;
 import deo.schoolm.primaire.entities.Matiere;
 import java.util.List;
 

@@ -18,7 +18,5 @@ public interface ClasseService {
     public Classe modifier(Classe classe);
     public Classe trouver(Integer id);
     public List<Classe> lister();
-    //public List<Classe> lister(Cours cours);
-    public List<Classe> lister(String distingush);
-    //public List<Classe> lister(Instituteur instituteur);
+    public List<Classe> lister(String filter);
 }
