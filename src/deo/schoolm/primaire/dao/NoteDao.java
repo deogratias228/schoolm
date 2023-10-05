@@ -21,8 +21,6 @@ public interface NoteDao {
     public Note modifier(Note note);
     public Note trouver(Integer id);
     public List<Note> lister();
-    public List<Note> lister(Eleve eleve);
-    public List<Note> lister(Evaluation evaluation);
-    public List<Note> lister(Matiere matiere);
+    public List<Note> lister(String filter);
     public List<Note> lister(double note);
 }

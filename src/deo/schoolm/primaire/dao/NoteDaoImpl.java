@@ -4,7 +4,10 @@
  */
 package deo.schoolm.primaire.dao;
 
+import deo.schoolm.primaire.entities.Eleve;
+import deo.schoolm.primaire.entities.Evaluation;
 import deo.schoolm.primaire.entities.Matiere;
+import deo.schoolm.primaire.entities.Note;
 import deo.schoolm.utils.Connexion;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -14,15 +17,15 @@ import javax.persistence.Query;
  *
  * @author Deo Gratias 228
  */
-public class MatiereDaoImpl implements MatiereDao {
+public class NoteDaoImpl implements NoteDao{
 
     @Override
-    public void ajouter(Matiere m) {
+    public void ajouter(Note note) {
         EntityManager em = Connexion.getConnexion();
         
         try {
             em.getTransaction().begin();
-                em.persist(m);
+                em.persist(note);
             em.getTransaction().commit();
         } finally {
             em.close();
@@ -30,12 +33,12 @@ public class MatiereDaoImpl implements MatiereDao {
     }
 
     @Override
-    public void supprimer(Matiere m) {
+    public void supprimer(Note note) {
         EntityManager em = Connexion.getConnexion();
         
         try {
             em.getTransaction().begin();
-                em.remove(m);
+                em.remove(note);
             em.getTransaction().commit();
         } finally {
             em.close();
@@ -48,45 +51,62 @@ public class MatiereDaoImpl implements MatiereDao {
     }
 
     @Override
-    public Matiere modifier(Matiere m) {
+    public Note modifier(Note note) {
         EntityManager em = Connexion.getConnexion();
-        Matiere matiereModifiee = null;
+        Note noteModifiee = null;
         
         try {
             em.getTransaction().begin();
-            Matiere matiereEx = trouver(m.getId());
+            Note noteExistant = trouver(note.getId());
             
-            if(matiereEx != null){
-                matiereEx.setCours(m.getCours());
-                matiereEx.setEleves(m.getEleves());
-                matiereEx.setIntitule(m.getIntitule());
-                matiereEx.setNoteMaxi(m.getNoteMaxi());
-                matiereEx.setNotes(m.getNotes());
-                
-                matiereModifiee = em.merge(matiereEx);
+            if (noteExistant != null){
+                noteExistant.setEleve(note.getEleve());
+                noteExistant.setEvaluation(note.getEvaluation());
+                noteExistant.setMatiere(note.getMatiere());
+                noteExistant.setNote_obtenue(note.getNote_obtenue());
+
+                noteModifiee = em.merge(noteExistant);
             }
+            
             em.getTransaction().commit();
         } finally {
             em.close();
         }
         
-        return matiereModifiee;
+        
+        return noteModifiee;
     }
 
     @Override
-    public Matiere trouver(Integer id) {
+    public Note trouver(Integer id) {
         EntityManager em = Connexion.getConnexion();
         
-        return em.find(Matiere.class, id);
+        return em.find(Note.class, id);
     }
 
     @Override
-    public List<Matiere> lister() {
+    public List<Note> lister() {
         EntityManager em = Connexion.getConnexion();
-        List<Matiere> liste = null;
+        List<Note> liste = null;
         
         try {
-            Query query = em.createQuery("SELECT matiere FROM Matiere matiere");
+            Query query = em.createQuery("SELECT note FROM Note note");
+            liste = query.getResultList();
+        } finally {
+            em.close();
+        }
+        
+        return liste;
+    }
+        
+    @Override
+    public List<Note> lister(double note) {
+        EntityManager em = Connexion.getConnexion();
+        List<Note> liste = null;
+        
+        try {
+            Query query = em.createQuery("SELECT note FROM Note note WHERE note.noteObtenue = :data");
+            query.setParameter(":data", note);
             liste = query.getResultList();
         } finally {
             em.close();
@@ -96,15 +116,17 @@ public class MatiereDaoImpl implements MatiereDao {
     }
 
     @Override
-    public List<Matiere> lister(double note) {
+    public List<Note> lister(String filter) {
         EntityManager em = Connexion.getConnexion();
-        List<Matiere> liste = null;
+        List<Note> liste = null;
         
         try {
             Query query = em.createQuery(""
-                    + " SELECT matiere FROM Matiere matiere"
-                    + " WHERE matiere.noteMaxi = :note");
-            query.setParameter("note", note);
+                    + " SELECT note FROM Note note"
+                    + " WHERE note.evaluation.intitule LIKE :data"
+                    + " OR note.eleve.eleveNom LIKE :data"
+                    + " OR note.matiere LIKE :data");
+            query.setParameter(":data", filter);
             liste = query.getResultList();
         } finally {
             em.close();
@@ -112,25 +134,5 @@ public class MatiereDaoImpl implements MatiereDao {
         
         return liste;
     }
-
-    @Override
-    public List<Matiere> lister(String search) {
-        EntityManager em = Connexion.getConnexion();
-        List<Matiere> liste = null;
-        
-        try {
-            Query query = em.createQuery(""
-                    + " SELECT matiere FROM Matiere matiere"
-                    + " WHERE matiere.intitule LIKE :search"
-                    + " OR matiere.cours.code LIKE :search ");
-            
-            query.setParameter("search", search);
-            liste = query.getResultList();
-        } finally {
-            em.close();
-        }
-        
-        return liste;
-    }   
     
 }
