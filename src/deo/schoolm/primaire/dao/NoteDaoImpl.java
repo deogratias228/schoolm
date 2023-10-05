@@ -106,7 +106,7 @@ public class NoteDaoImpl implements NoteDao{
         
         try {
             Query query = em.createQuery("SELECT note FROM Note note WHERE note.noteObtenue = :data");
-            query.setParameter(":data", note);
+            query.setParameter("data", "%"+note+"%");
             liste = query.getResultList();
         } finally {
             em.close();
@@ -126,7 +126,7 @@ public class NoteDaoImpl implements NoteDao{
                     + " WHERE note.evaluation.intitule LIKE :data"
                     + " OR note.eleve.eleveNom LIKE :data"
                     + " OR note.matiere LIKE :data");
-            query.setParameter(":data", filter);
+            query.setParameter("data", "%"+filter+"%");
             liste = query.getResultList();
         } finally {
             em.close();

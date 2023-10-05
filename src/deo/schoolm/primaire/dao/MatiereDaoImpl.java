@@ -124,7 +124,7 @@ public class MatiereDaoImpl implements MatiereDao {
                     + " WHERE matiere.intitule LIKE :search"
                     + " OR matiere.cours.code LIKE :search ");
             
-            query.setParameter("search", search);
+            query.setParameter("search", "%"+search+"%");
             liste = query.getResultList();
         } finally {
             em.close();

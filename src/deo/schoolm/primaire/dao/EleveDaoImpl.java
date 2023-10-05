@@ -55,22 +55,38 @@ public class EleveDaoImpl implements EleveDao {
     }
 
     @Override
-    public Eleve modifier(Eleve eleve) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public Eleve modifier(Eleve e) {
+        EntityManager em = Connexion.getConnexion();
+        Eleve eModifiee = null;
+        
+        try {
+            em.getTransaction().begin();
+            Eleve eExistant = trouver(e.getId());
+            if(eExistant != null){
+                eExistant.setClasse(e.getClasse());
+                eExistant.setEleveMatricule(e.getEleveMatricule());
+                eExistant.setEleveNaissance(e.getEleveNaissance());
+                eExistant.setEleveNom(e.getEleveNom());
+                eExistant.setElevePrenom(e.getElevePrenom());
+                eExistant.setMatieres(e.getMatieres());
+                eExistant.setNotes(e.getNotes());
+                eExistant.setTuteurContact(e.getTuteurContact());
+                eExistant.setTuteurNom(e.getTuteurNom());
+                
+                eModifiee = em.merge(eExistant);
+            }
+            em.getTransaction().commit();
+        } finally {
+            em.close();
+        }
+        
+        return eModifiee;
     }
 
     @Override
     public Eleve trouver(Integer id) {
         EntityManager em = Connexion.getConnexion();
-        Eleve e = null;
-        
-        try {
-            e = em.find(Eleve.class, id);
-        } finally {
-            em.close();
-        }
-        
-        return e;
+        return em.find(Eleve.class, id);
     }
 
     @Override
@@ -89,17 +105,18 @@ public class EleveDaoImpl implements EleveDao {
     }
 
     @Override
-    public List<Eleve> lister(String eleveTuteurContact) {
+    public List<Eleve> lister(String filter) {
         List<Eleve> liste = null;
         EntityManager em = Connexion.getConnexion();
         
         try {
             Query query = em.createQuery(""
                     + " SELECT eleve FROM Eleve eleve WHERE"
-                    + " (eleve.eleveNom OR eleve.elevePrenom OR"
-                    + " eleve.tuteurNom OR eleve.tuteurContact )"
-                    + " LIKE :data");
-            query.setParameter(":data", eleveTuteurContact);
+                    + " eleve.eleveNom LIKE :data"
+                    + " OR eleve.elevePrenom LIKE :data"
+                    + " OR eleve.tuteurNom LIKE :data"
+                    + " OR eleve.tuteurContact LIKE :data");
+            query.setParameter("data", "%"+filter+"%");
             
             liste = query.getResultList();
         } finally {
@@ -117,9 +134,8 @@ public class EleveDaoImpl implements EleveDao {
         try {
             Query query = em.createQuery(""
                     + " SELECT eleve FROM Eleve eleve WHERE"
-                    + " (eleve.eleveMatricule OR eleve.eleveNaissance )"
-                    + " LIKE :data");
-            query.setParameter(":data", anneeNaissance);
+                    + " CAST(eleve.eleveMatricule AS string) LIKE :data OR CAST(eleve.eleveNaissance AS string) LIKE :data");
+            query.setParameter("data", "%"+anneeNaissance+"%");
             
             liste = query.getResultList();
         } finally {

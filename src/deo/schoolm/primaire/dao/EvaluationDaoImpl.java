@@ -49,7 +49,28 @@ public class EvaluationDaoImpl implements EvaluationDao {
 
     @Override
     public Evaluation modifier(Evaluation e) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        EntityManager em = Connexion.getConnexion();
+        Evaluation eModifiee = null;
+        
+        try {
+            em.getTransaction().begin();
+            Evaluation eExistant = trouver(e.getId());
+            
+            if(eExistant != null) {
+                eExistant.setClasse(e.getClasse());
+                eExistant.setIntitule(e.getIntitule());
+                eExistant.setNotes(e.getNotes());
+                eExistant.setObservations(e.getObservations());
+                
+                eModifiee = em.merge(eExistant);
+            }
+            
+            em.getTransaction().commit();
+        } finally {
+            em.close();
+        }
+        
+        return eModifiee;
     }
 
     @Override
@@ -81,10 +102,11 @@ public class EvaluationDaoImpl implements EvaluationDao {
         
         try {
             Query query = em.createQuery(""
-                    + " SELECT evaluation FROM Evaluation evaluation WHERE"
-                    + " (evaluation.intitule OR evaluation.classe.cours.code)"
-                    + " LIKE :data ");
-            query.setParameter(":data", intituleOuClasse);
+                    + " SELECT evaluation FROM Evaluation evaluation"
+                    + " WHERE evaluation.intitule LIKE :data "
+                    + " OR evaluation.classe.cours.code LIKE :data "
+                    );
+            query.setParameter("data", "%"+intituleOuClasse+"%");
             liste = query.getResultList();
             
         } finally {

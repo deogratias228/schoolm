@@ -18,4 +18,5 @@ public interface CoursDao {
     public Cours modifier(Cours cours);
     public Cours trouver(Integer id);
     public List<Cours> lister();
+    public List<Cours> lister(String filter);
 }

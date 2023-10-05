@@ -44,33 +44,37 @@ public class CoursDaoImpl implements CoursDao{
 
     @Override
     public void supprimer(Integer id) {
-        EntityManager em = Connexion.getConnexion();
-        
-        try {
-            Cours cours = em.find(Cours.class, id);
-            supprimer(cours);
-        } finally {
-            em.close();
-        }
+        supprimer(trouver(id));
     }
 
     @Override
     public Cours modifier(Cours cours) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        EntityManager em = Connexion.getConnexion();
+        Cours cModifiee = null;
+        
+        try {
+            em.getTransaction().begin();
+            Cours cExistant = trouver(cours.getId());
+            if(cExistant != null){
+                cExistant.setClasses(cours.getClasses());
+                cExistant.setCode(cours.getCode());
+                cExistant.setDescription(cours.getDescription());
+                
+                cModifiee = em.merge(cExistant);
+            }
+            
+            em.getTransaction().commit();
+        } finally {
+            em.close();
+        }
+        
+        return cModifiee;
     }
 
     @Override
     public Cours trouver(Integer id) {
         EntityManager em = Connexion.getConnexion();
-        Cours cours = null;
-        
-        try {
-            cours = em.find(Cours.class, id);
-        } finally {
-            em.close();
-        }
-        
-        return cours;
+        return em.find(Cours.class, id);
     }
 
     @Override
@@ -87,5 +91,26 @@ public class CoursDaoImpl implements CoursDao{
         
         return cours;
     }
+
+    @Override
+    public List<Cours> lister(String filter) {
+        EntityManager em = Connexion.getConnexion();
+        List<Cours> cours = null;
+        
+        try {
+            Query query = em.createQuery(""
+                    + " SELECT cours FROM Cours cours "
+                    + " WHERE cours.code LIKE :data"
+                    + " OR cours.description LIKE :data");
+            query.setParameter("data", "%"+filter+"%");
+            cours = query.getResultList();
+        } finally {
+            em.close();
+        }
+        
+        return cours;
+    }
+    
+    
     
 }

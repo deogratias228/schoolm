@@ -50,10 +50,11 @@ public class Classe implements Serializable {
         this.distingush = " ";
     }
 
-    public Classe(Integer id, String distingush, Cours cours) {
+    public Classe(Integer id, String distingush, Cours cours, Instituteur instituteur) {
         this.id = id;
         this.distingush = distingush;
         this.cours = cours;
+        this.instituteur = instituteur;
     }
     
     public Integer getId() {

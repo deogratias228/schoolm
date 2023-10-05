@@ -5,8 +5,6 @@
 package deo.schoolm.primaire.dao;
 
 import deo.schoolm.primaire.entities.Classe;
-import deo.schoolm.primaire.entities.Cours;
-import deo.schoolm.primaire.entities.Instituteur;
 import deo.schoolm.utils.Connexion;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +16,7 @@ import javax.persistence.Query;
  *
  * @author Deo Gratias 228
  */
-public class ClasseDaoImpl implements ClasseDao{
+public class ClasseDaoImpl implements ClasseDao {
 
     EntityManager em = Connexion.getConnexion();
     
@@ -50,7 +48,28 @@ public class ClasseDaoImpl implements ClasseDao{
 
     @Override
     public Classe modifier(Classe classe) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        EntityManager em = Connexion.getConnexion();
+        Classe cModifiee = null;
+        
+        try {
+            em.getTransaction().begin();
+            Classe cExistant = trouver(classe.getId());
+            if(cExistant != null){
+                cExistant.setCours(classe.getCours());
+                cExistant.setDistingush(classe.getDistingush());
+                cExistant.setEleves(classe.getEleves());
+                cExistant.setEvaluations(classe.getEvaluations());
+                cExistant.setInstituteur(classe.getInstituteur());
+                
+                cModifiee = em.merge(cExistant);
+            }
+            
+            em.getTransaction().commit();
+        } finally {
+            em.close();
+        }
+        
+        return cModifiee;
     }
 
     @Override
@@ -86,30 +105,12 @@ public class ClasseDaoImpl implements ClasseDao{
     }
 
     @Override
-    public List<Classe> lister(Cours cours) {
+    public List<Classe> lister(String filter) {
         List<Classe> liste = new ArrayList<>();
         
         try {
-            Query query = em.createQuery("SELECT classe FROM Classe classe WHERE Classe.cours = :c");
-            query.setParameter("c", cours);
-            
-            liste = query.getResultList();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        } finally {
-            em.close();
-        }
-        
-        return liste;
-    }
-
-    @Override
-    public List<Classe> lister(String distingush) {
-        List<Classe> liste = new ArrayList<>();
-        
-        try {
-            Query query = em.createQuery("SELECT classe FROM Classe classe WHERE classe.distingush =:d");
-            query.setParameter("d", distingush);
+            Query query = em.createQuery("SELECT classe FROM Classe classe WHERE classe.distingush LIKE :d OR classe.instituteur.nom LIKE :d");
+            query.setParameter("d", filter);
             
             liste = query.getResultList();
         } catch (Exception e) {
@@ -121,22 +122,6 @@ public class ClasseDaoImpl implements ClasseDao{
         return liste;   
     }
 
-    @Override
-    public List<Classe> lister(Instituteur instituteur) {
-        List<Classe> liste = new ArrayList<>();
-        
-        try {
-            Query query = em.createQuery("SELECT classe FROM Classe classe WHERE Classe.instituteur = :i");
-            query.setParameter("i", instituteur);
-            
-            liste = query.getResultList();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        } finally {
-            em.close();
-        }
-        
-        return liste;   
-    }
+   
     
 }

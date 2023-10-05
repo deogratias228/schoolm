@@ -49,7 +49,29 @@ public class InstituteurDaoImpl implements InstituteurDao {
 
     @Override
     public Instituteur modifier(Instituteur instituteur) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        EntityManager em = Connexion.getConnexion();
+        Instituteur iModifiee = null;
+        
+        try {
+            em.getTransaction().begin();
+            Instituteur iExistant = trouver(instituteur.getId());
+            if(iExistant != null) {
+                iExistant.setContact(instituteur.getContact());
+                iExistant.setDatePriseDeService(instituteur.getDatePriseDeService());
+                iExistant.setGradeEchelon(instituteur.getGradeEchelon());
+                iExistant.setNom(instituteur.getNom());
+                iExistant.setNumeroMatricule(instituteur.getNumeroMatricule());
+                iExistant.setPrenom(instituteur.getPrenom());
+                iExistant.setTitre(instituteur.getTitre());
+                
+                iModifiee = em.merge(iExistant);
+            }
+            em.getTransaction().commit();
+        } finally {
+            em.close();
+        }
+        
+        return iModifiee;
     }
 
     @Override
@@ -82,14 +104,14 @@ public class InstituteurDaoImpl implements InstituteurDao {
         try {
             Query query = em.createQuery(""
                     + " SELECT instituteur FROM Instituteur instituteur"
-                    + " WHERE (instituteur.gradeEchelon "
-                    + " OR instituteur.nom"
-                    + " OR instituteur.numeroMatricule "
-                    + " OR instituteur.prenom "
-                    + " OR instituteur.contact "
-                    + " OR instituteur.titre)"
-                    + " LIKE :search");
-            query.setParameter(":search", search);
+                    + " WHERE instituteur.gradeEchelon LIKE :search"
+                    + " OR instituteur.nom LIKE :search"
+                    + " OR instituteur.numeroMatricule LIKE :search"
+                    + " OR instituteur.prenom LIKE :search"
+                    + " OR instituteur.contact LIKE :search "
+                    + " OR instituteur.titre LIKE :search)"
+                    + " ");
+            query.setParameter("search", "%"+search+"%");
             liste = query.getResultList();
         } finally {
             em.close();
