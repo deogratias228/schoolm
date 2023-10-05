@@ -115,7 +115,8 @@ public class EleveDaoImpl implements EleveDao {
                     + " eleve.eleveNom LIKE :data"
                     + " OR eleve.elevePrenom LIKE :data"
                     + " OR eleve.tuteurNom LIKE :data"
-                    + " OR eleve.tuteurContact LIKE :data");
+                    + " OR eleve.tuteurContact LIKE :data"
+                    + " OR CAST(eleve.eleveMatricule AS string) LIKE :data");
             query.setParameter("data", "%"+filter+"%");
             
             liste = query.getResultList();

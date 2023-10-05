@@ -4,7 +4,6 @@
  */
 package deo.schoolm.primaire.dao;
 
-import deo.schoolm.primaire.entities.Classe;
 import deo.schoolm.primaire.entities.Evaluation;
 import java.util.List;
 

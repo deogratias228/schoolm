@@ -106,7 +106,7 @@ public class InstituteurDaoImpl implements InstituteurDao {
                     + " SELECT instituteur FROM Instituteur instituteur"
                     + " WHERE instituteur.gradeEchelon LIKE :search"
                     + " OR instituteur.nom LIKE :search"
-                    + " OR instituteur.numeroMatricule LIKE :search"
+                    + " OR CAST(instituteur.numeroMatricule AS string) LIKE :search"
                     + " OR instituteur.prenom LIKE :search"
                     + " OR instituteur.contact LIKE :search "
                     + " OR instituteur.titre LIKE :search)"
