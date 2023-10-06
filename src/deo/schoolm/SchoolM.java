@@ -4,8 +4,7 @@
  */
 package deo.schoolm;
 
-import deo.schoolm.utils.Connexion;
-import javax.persistence.EntityManager;
+import deo.schoolm.gui.MainWindow;
 /**
  *
  * @author Deo Gratias 228
@@ -17,8 +16,7 @@ public class SchoolM {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        EntityManager em = Connexion.getConnexion();
-        
+        MainWindow w = new MainWindow();
     }
     
 }
