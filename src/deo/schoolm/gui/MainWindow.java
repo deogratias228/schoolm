@@ -4,8 +4,11 @@
  */
 package deo.schoolm.gui;
 
+import java.awt.BorderLayout;
+import java.awt.Dimension;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
 import javax.swing.SwingConstants;
 
 /**
@@ -13,15 +16,23 @@ import javax.swing.SwingConstants;
  * @author Deo Gratias 228
  */
 public class MainWindow extends JFrame {
-    JPanel panel = new JPanel();
-    Accueil accueil = new Accueil();
+    private JPanel panel;
+    private Accueil accueil;
+    private JTabbedPane onglets;
     
     public MainWindow(){
         super("School Manager");
-        this.setSize(900, 720);
+        this.setSize(new Dimension(600, 500));
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         
-        panel.add(accueil);
+        accueil = new Accueil();        
+        
+        onglets = new JTabbedPane(SwingConstants.TOP);
+        onglets.addTab("Accueil", accueil);        
+        
+        panel = new JPanel(new BorderLayout());
+        panel.add(onglets, BorderLayout.CENTER);
+        
         this.getContentPane().add(panel);
         this.setVisible(true);
     }

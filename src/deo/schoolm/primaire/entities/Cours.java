@@ -41,8 +41,7 @@ public class Cours implements Serializable {
     public Cours() {
     }
 
-    public Cours(Integer id, String code, String description) {
-        this.id = id;
+    public Cours(String code, String description) {
         this.code = code;
         this.description = description;
     }

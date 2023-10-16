@@ -3,13 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/F:/NetbeansProjects/SchoolM/src/deo/schoolm/primaire/services/ClasseServiceImpl.java</file>
-            <file>file:/F:/NetbeansProjects/SchoolM/src/deo/schoolm/primaire/services/InstituteurServiceImpl.java</file>
-            <file>file:/F:/NetbeansProjects/SchoolM/src/deo/schoolm/primaire/services/EleveServiceImpl.java</file>
-            <file>file:/F:/NetbeansProjects/SchoolM/src/deo/schoolm/primaire/services/MatiereServiceImpl.java</file>
-            <file>file:/F:/NetbeansProjects/SchoolM/src/deo/schoolm/primaire/services/EvaluationServiceImpl.java</file>
-            <file>file:/F:/NetbeansProjects/SchoolM/src/deo/schoolm/primaire/services/NoteServiceImpl.java</file>
-            <file>file:/F:/NetbeansProjects/SchoolM/src/deo/schoolm/primaire/services/CoursServiceImpl.java</file>
+            <file>file:/F:/NetbeansProjects/SchoolM/src/deo/schoolm/gui/MainWindow.java</file>
+            <file>file:/F:/NetbeansProjects/SchoolM/src/deo/schoolm/gui/Accueil.java</file>
         </group>
     </open-files>
 </project-private>

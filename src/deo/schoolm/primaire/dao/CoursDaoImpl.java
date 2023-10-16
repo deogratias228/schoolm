@@ -19,10 +19,11 @@ public class CoursDaoImpl implements CoursDao{
     @Override
     public void ajouter(Cours cours) {
         EntityManager em = Connexion.getConnexion();
-        
+
         try {
             em.getTransaction().begin();
                 em.persist(cours);
+                System.out.println("cool 2");
             em.getTransaction().begin();
         } finally {
             em.close();
